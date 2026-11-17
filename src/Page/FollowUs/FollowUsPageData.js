@@ -1,0 +1,95 @@
+/**
+ * Social Media & Follow Us Section Configuration Data
+ * Order: Instagram, X (Twitter), Telegram, WhatsApp, Facebook, YouTube, LinkedIn, Website
+ */
+export const followUsConfig = {
+  headerTitle: 'Follow-us',
+  badgeText: 'Official Digital Network',
+  pageDescription:
+    'Stay connected with CR Real Time News Channel across all official social media platforms. Join our verified 24/7 digital broadcasting network for real-time alerts, breaking news headlines, investigative journalism, and direct citizen engagement.',
+  phoneTitle: 'Follow-up Space',
+  phoneSubtitle: 'Stay Connected with Us',
+};
+
+export const socialMediaList = [
+  {
+    id: 'instagram',
+    name: 'Instagram',
+    url: 'https://www.instagram.com/crrealtimenewschannel',
+    gradient: 'linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)',
+    innerGloss: 'linear-gradient(180deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.08) 48%, rgba(0,0,0,0.2) 100%)',
+    glowColor: 'rgba(225, 48, 108, 0.75)',
+    shadowColor: 'rgba(204, 35, 102, 0.55)',
+    badgeColor: '#e1306c',
+  },
+  {
+    id: 'x',
+    name: 'X (Twitter)',
+    url: 'https://x.com',
+    gradient: 'linear-gradient(145deg, #2a2e36 0%, #15181e 50%, #07080a 100%)',
+    innerGloss: 'linear-gradient(180deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.05) 50%, rgba(0,0,0,0.45) 100%)',
+    glowColor: 'rgba(56, 189, 248, 0.6)',
+    shadowColor: 'rgba(0, 0, 0, 0.7)',
+    badgeColor: '#000000',
+  },
+  {
+    id: 'telegram',
+    name: 'Telegram',
+    url: 'https://telegram.org',
+    gradient: 'linear-gradient(145deg, #38bdf8 0%, #0ea5e9 45%, #0284c7 100%)',
+    innerGloss: 'linear-gradient(180deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.08) 50%, rgba(0,0,0,0.2) 100%)',
+    glowColor: 'rgba(14, 165, 233, 0.75)',
+    shadowColor: 'rgba(2, 132, 199, 0.55)',
+    badgeColor: '#229ED9',
+  },
+  {
+    id: 'whatsapp',
+    name: 'WhatsApp',
+    url: 'https://whatsapp.com',
+    gradient: 'linear-gradient(145deg, #34d399 0%, #22c55e 45%, #15803d 100%)',
+    innerGloss: 'linear-gradient(180deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.08) 50%, rgba(0,0,0,0.22) 100%)',
+    glowColor: 'rgba(34, 197, 94, 0.75)',
+    shadowColor: 'rgba(21, 128, 61, 0.55)',
+    badgeColor: '#25D366',
+  },
+  {
+    id: 'facebook',
+    name: 'Facebook',
+    url: 'https://facebook.com',
+    gradient: 'linear-gradient(145deg, #3b82f6 0%, #1d4ed8 45%, #1e40af 100%)',
+    innerGloss: 'linear-gradient(180deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.08) 50%, rgba(0,0,0,0.22) 100%)',
+    glowColor: 'rgba(37, 99, 235, 0.75)',
+    shadowColor: 'rgba(30, 64, 175, 0.55)',
+    badgeColor: '#1877F2',
+  },
+  {
+    id: 'youtube',
+    name: 'YouTube',
+    url: 'https://youtube.com/@crrealtimenews?si=Zb1c7yQxCpkdW1dR',
+    gradient: 'linear-gradient(145deg, #ff3b30 0%, #e60000 45%, #b30000 100%)',
+    innerGloss: 'linear-gradient(180deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.08) 50%, rgba(0,0,0,0.25) 100%)',
+    glowColor: 'rgba(230, 0, 0, 0.75)',
+    shadowColor: 'rgba(179, 0, 0, 0.55)',
+    badgeColor: '#FF0000',
+  },
+  {
+    id: 'linkedin',
+    name: 'LinkedIn',
+    url: 'https://www.linkedin.com/company/cr-realtime-news-channel/',
+    gradient: 'linear-gradient(145deg, #0ea5e9 0%, #0077b5 45%, #005684 100%)',
+    innerGloss: 'linear-gradient(180deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.08) 50%, rgba(0,0,0,0.22) 100%)',
+    glowColor: 'rgba(0, 119, 181, 0.75)',
+    shadowColor: 'rgba(0, 86, 132, 0.55)',
+    badgeColor: '#0077B5',
+  },
+  {
+    id: 'website',
+    name: 'Website',
+    url: 'https://crrealtimenews.com',
+    gradient: 'linear-gradient(145deg, #00d2ff 0%, #0099ff 50%, #0066cc 100%)',
+    innerGloss: 'linear-gradient(180deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.08) 50%, rgba(0,0,0,0.22) 100%)',
+    glowColor: 'rgba(0, 153, 255, 0.8)',
+    shadowColor: 'rgba(0, 102, 204, 0.55)',
+    badgeColor: '#0099FF',
+  },
+];
