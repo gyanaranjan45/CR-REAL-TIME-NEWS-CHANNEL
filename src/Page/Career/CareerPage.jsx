@@ -864,7 +864,6 @@ function LaptopSVG({ className = "" }) {
     // Step 1: At 350ms, start flipping lid closed
     timerRefs.current.push(
       setTimeout(() => {
-        playLatchSound();
         setIsClosed(true);
       }, 350)
     );
@@ -872,7 +871,6 @@ function LaptopSVG({ className = "" }) {
     // Step 2: At 1550ms, flip lid back open
     timerRefs.current.push(
       setTimeout(() => {
-        playLatchSound();
         setIsClosed(false);
       }, 1550)
     );
@@ -880,7 +878,7 @@ function LaptopSVG({ className = "" }) {
     // Step 3: At 2200ms (lid is upright), power on screen
     timerRefs.current.push(
       setTimeout(() => {
-        playCrtBlipSound();
+        // Silent transition
       }, 2200)
     );
 
@@ -895,34 +893,10 @@ function LaptopSVG({ className = "" }) {
     return () => clearAllTimers();
   }, []);
 
-  // Synthesize CRT degauss/screen refresh blip sound
-  const playCrtBlipSound = () => {
-    try {
-      const AudioCtx = window.AudioContext || window.webkitAudioContext;
-      if (!AudioCtx) return;
-      const ctx = new AudioCtx();
-      const now = ctx.currentTime;
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.type = "sine";
-      osc.frequency.setValueAtTime(160, now);
-      osc.frequency.exponentialRampToValueAtTime(32, now + 0.08);
-      gain.gain.setValueAtTime(0.07, now);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      osc.start(now);
-      osc.stop(now + 0.09);
-    } catch {
-      // Audio fallback
-    }
-  };
-
   // Screen refresh & sequential card appearance ("screen off hooke on, ek ek karke card add hoga")
   const handlePageChange = (newPage) => {
     if (newPage === currentPage || isScreenFlickering) return;
     clearAllTimers();
-    playCrtBlipSound();
 
     // 1. Screen turns off (blackout overlay snaps on) & reset visible cards
     setIsScreenFlickering(true);
@@ -957,29 +931,6 @@ function LaptopSVG({ className = "" }) {
     timerRefs.current.push(setTimeout(() => setVisibleCardCount(6), 750));
   };
 
-  // Synthesize vintage mechanical latch click sound
-  const playLatchSound = () => {
-    try {
-      const AudioCtx = window.AudioContext || window.webkitAudioContext;
-      if (!AudioCtx) return;
-      const ctx = new AudioCtx();
-      const now = ctx.currentTime;
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.type = "sine";
-      osc.frequency.setValueAtTime(650, now);
-      osc.frequency.exponentialRampToValueAtTime(110, now + 0.05);
-      gain.gain.setValueAtTime(0.09, now);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.06);
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      osc.start(now);
-      osc.stop(now + 0.065);
-    } catch {
-      // Audio permission fallback
-    }
-  };
-
   const toggleFold = (e) => {
     e?.stopPropagation();
     clearAllTimers();
@@ -989,7 +940,6 @@ function LaptopSVG({ className = "" }) {
     if (typeof document !== "undefined" && document.activeElement && typeof document.activeElement.blur === "function") {
       document.activeElement.blur();
     }
-    playLatchSound();
     setIsClosed((prev) => {
       const nextClosed = !prev;
       if (!nextClosed && visibleCardCount < 6) {
@@ -2016,7 +1966,7 @@ export function Carrier({
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: CARRIER_STYLES }} />
-      <main className={`w-full min-h-screen flex flex-col items-center justify-start pt-3 sm:pt-4 md:pt-6 pb-8 md:pb-12 px-2 sm:px-4 md:px-8 bg-transparent ${className}`}>
+      <main className={`w-full min-h-screen flex flex-col items-center justify-start pt-12 sm:pt-4 md:pt-6 pb-8 md:pb-12 px-2 sm:px-4 md:px-8 bg-transparent ${className}`}>
         {/* Page Header Section */}
         <header className="w-full max-w-4xl text-center flex flex-col items-center mb-2.5 sm:mb-3.5 px-2">
           {/* Official Channel Network Pill */}

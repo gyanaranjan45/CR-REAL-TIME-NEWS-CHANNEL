@@ -18,7 +18,7 @@ import {
   FileText,
   CheckCircle2,
   Play,
-  Volume2,
+  VolumeX,
   Send,
   AlertTriangle,
   Award,
@@ -154,9 +154,9 @@ export const PlaceholderPage = ({ route = 'about-us', onNavigate }) => {
         'Experience real-time broadcast television streaming live from our central studios in New Delhi. High-definition multi-camera feed featuring live telemetry, synchronized ticker news, and investigative briefings.',
       highlights: [
         { label: 'Stream Quality', value: 'Full HD 1080p 60fps' },
-        { label: 'Audio Feed', value: 'Dolby 5.1 Telemetry' },
         { label: 'Transmission', value: 'Satellite Uplink INSAT-4B' },
         { label: 'Broadcast Status', value: 'ON AIR • LIVE' },
+        { label: 'Audio Mode', value: 'Muted (Audio Removed)' },
       ],
     },
     'advertise-with-us': {
@@ -300,7 +300,7 @@ export const PlaceholderPage = ({ route = 'about-us', onNavigate }) => {
   const PageIcon = currentConfig.icon || Info;
 
   return (
-    <main className="w-full bg-[#f8fafc] text-slate-800 min-h-[75vh] py-6 sm:py-10 px-3 sm:px-6 lg:px-8 font-sans">
+    <main className="w-full bg-[#f8fafc] text-slate-800 min-h-[75vh] pt-12 pb-6 sm:py-10 px-3 sm:px-6 lg:px-8 font-sans">
       <div className="max-w-[1240px] xl:max-w-[1340px] mx-auto">
         
         {/* Top Breadcrumb & Back-to-Home Bar */}
@@ -606,11 +606,11 @@ export const PlaceholderPage = ({ route = 'about-us', onNavigate }) => {
                   </span>
                 </div>
 
-                {/* Top-Right Telemetry & Sound Bar */}
+                {/* Top-Right Telemetry Bar */}
                 <div className="absolute top-3 right-3 sm:top-5 sm:right-5 flex items-center gap-2 z-10">
                   <div className="hidden sm:flex items-center gap-1 bg-black/60 px-2.5 py-1 rounded-lg border border-white/10 text-white text-[11px] font-mono">
-                    <Volume2 className="w-3.5 h-3.5 text-emerald-400" />
-                    <span>5.1 AUDIO</span>
+                    <VolumeX className="w-3.5 h-3.5 text-slate-400" />
+                    <span>MUTED</span>
                   </div>
                   <button
                     onClick={() => navigateTo('home')}

@@ -1008,7 +1008,7 @@ export const AboutUs = () => {
   }, []);
 
   return (
-    <div className="w-full min-h-screen bg-slate-50 text-slate-800 flex flex-col items-center justify-start pt-4 sm:pt-7 pb-16 sm:pb-24 px-3 sm:px-4 selection:bg-blue-600 selection:text-white">
+    <div className="w-full min-h-screen bg-slate-50 text-slate-800 flex flex-col items-center justify-start pt-12 sm:pt-7 pb-16 sm:pb-24 px-3 sm:px-4 selection:bg-blue-600 selection:text-white">
       
       {/* 0. ABOUT US PAGE HEADER & DESCRIPTION */}
       <header className="w-full max-w-4xl flex flex-col items-center text-center mb-3 sm:mb-6 select-none">

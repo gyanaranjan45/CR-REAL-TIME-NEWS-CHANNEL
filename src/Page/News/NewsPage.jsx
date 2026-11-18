@@ -788,7 +788,7 @@ export default function News() {
   const [activeModal, setActiveModal] = useState(null);
 
   return (
-    <div className="relative min-h-screen w-full bg-gradient-to-b from-[#f6f3eb] via-[#ede7dc] to-[#ded5c6] flex flex-col items-center justify-center p-2 sm:p-3 md:p-5 select-none overflow-x-hidden font-sans">
+    <div className="relative min-h-screen w-full bg-gradient-to-b from-[#f6f3eb] via-[#ede7dc] to-[#ded5c6] flex flex-col items-center justify-center pt-12 pb-2 px-2 sm:p-3 md:p-5 select-none overflow-x-hidden font-sans">
       
       {/* Soft Ambient Interior Wall Lighting & Vignette */}
       <div 

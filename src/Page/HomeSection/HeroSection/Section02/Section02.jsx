@@ -456,7 +456,6 @@ function NotebookLeftPage({ spread, onSelectTab, onClose }) {
  * ------------------------------------------------------------------------- */
 function NotebookRightPage({
   spread,
-  onSelectTab,
   onPrevPage,
   onNextPage,
   disablePrev,

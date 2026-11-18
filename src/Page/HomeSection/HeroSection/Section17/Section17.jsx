@@ -105,30 +105,8 @@ function NewsBroadcast() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Subtle vintage mechanical click sound on manual knob action
-  const playKnobClick = () => {
-    try {
-      const AudioCtx = window.AudioContext || window.webkitAudioContext;
-      if (!AudioCtx) return;
-      const ctx = new AudioCtx();
-      if (ctx.state === 'suspended') {
-        ctx.resume();
-      }
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.type = 'triangle';
-      osc.frequency.setValueAtTime(160, ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(30, ctx.currentTime + 0.05);
-      gain.gain.setValueAtTime(0.2, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.05);
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      osc.start();
-      osc.stop(ctx.currentTime + 0.05);
-    } catch {
-      // Audio context might be waiting for user gesture
-    }
-  };
+  // Silent action handler - audio effects removed
+  const playKnobClick = () => {};
 
   // Instant, Unblocked Navigation Handlers
   const handleNext = useCallback(() => {

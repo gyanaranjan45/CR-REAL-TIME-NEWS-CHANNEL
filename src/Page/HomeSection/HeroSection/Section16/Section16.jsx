@@ -328,11 +328,13 @@ export const Section16 = () => {
 
   // Responsive scaling container hook
   const containerRef = useRef(null);
+  const apparatusRef = useRef(null);
   const [scale, setScale] = useState(1);
   const [isMobile, setIsMobile] = useState(false);
+  const [apparatusHeight, setApparatusHeight] = useState(660);
 
   useEffect(() => {
-    const updateScale = () => {
+    const updateDimensions = () => {
       const w = window.innerWidth;
       const containerW = containerRef.current ? containerRef.current.clientWidth : w;
       const mobile = (w < 768) || (containerW < 520);
@@ -342,12 +344,36 @@ export const Section16 = () => {
       const availWidth = Math.min(containerW, w) - (mobile ? 16 : 40);
       const fit = availWidth / targetWidth;
       setScale(Math.max(0.35, Math.min(1.0, fit)));
+
+      if (apparatusRef.current) {
+        const measured = apparatusRef.current.offsetHeight;
+        if (measured > 200) {
+          setApparatusHeight(measured);
+        }
+      } else {
+        setApparatusHeight(mobile ? 760 : 660);
+      }
     };
 
-    updateScale();
-    window.addEventListener('resize', updateScale);
-    return () => window.removeEventListener('resize', updateScale);
+    updateDimensions();
+    window.addEventListener('resize', updateDimensions);
+    return () => window.removeEventListener('resize', updateDimensions);
   }, []);
+
+  // Continuous observer on apparatus size to ensure height is always 100% accurate on all devices
+  useEffect(() => {
+    if (!apparatusRef.current || typeof ResizeObserver === 'undefined') return;
+    const ro = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        const h = entry.borderBoxSize?.[0]?.blockSize || entry.contentRect?.height || apparatusRef.current?.offsetHeight;
+        if (h && h > 200) {
+          setApparatusHeight(Math.ceil(h));
+        }
+      }
+    });
+    ro.observe(apparatusRef.current);
+    return () => ro.disconnect();
+  }, [isMobile]);
 
   return (
     <section
@@ -375,9 +401,10 @@ export const Section16 = () => {
       <div
         ref={containerRef}
         className="w-full flex justify-center items-start overflow-visible relative"
-        style={{ height: `${(isMobile ? 570 : 660) * scale}px` }}
+        style={{ height: `${Math.ceil(apparatusHeight * scale + (isMobile ? 28 : 20))}px` }}
       >
         <div
+          ref={apparatusRef}
           className="relative flex flex-col items-center shrink-0 transition-transform duration-75 ease-out"
           style={{
             width: isMobile ? '430px' : '940px',

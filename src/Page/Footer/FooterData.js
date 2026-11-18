@@ -1,12 +1,14 @@
 export const quickLinks = [
-  'Home',
-  'Latest News',
-  'India',
-  'World',
-  'Business',
-  'Sports',
-  'Technology',
-  'Entertainment',
+  { name: 'Home', href: '#home' },
+  { name: 'About Us', href: '#about-us' },
+  { name: 'Our Services', href: '#our-services' },
+  { name: 'Grievance', href: '#grievance' },
+  { name: 'Live TV', href: '#live-tv' },
+  { name: 'Advertise With Us', href: '#advertise-with-us' },
+  { name: 'Media Coverage', href: '#media-coverage' },
+  { name: 'Events & Programs', href: '#events-programs' },
+  { name: 'Career', href: '#career' },
+  { name: 'Contact Us', href: '#contact-us' },
 ];
 
 export const ourServices = [

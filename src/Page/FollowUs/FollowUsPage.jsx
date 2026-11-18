@@ -582,7 +582,7 @@ export default function FollowUs() {
   const [activeIcon, setActiveIcon] = useState(null);
 
   return (
-    <section className="relative w-full min-h-screen py-4 md:py-6 px-3 flex flex-col items-center justify-center bg-white overflow-hidden select-none">
+    <section className="relative w-full min-h-screen pt-12 pb-4 md:py-6 px-3 flex flex-col items-center justify-center bg-white overflow-hidden select-none">
       {/* Dynamic Keyframe Style Definition */}
       <style>{`
         @keyframes followHeaderIn {

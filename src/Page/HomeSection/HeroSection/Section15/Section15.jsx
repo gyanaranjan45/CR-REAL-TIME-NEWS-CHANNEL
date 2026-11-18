@@ -28,9 +28,6 @@ function CassetteRecorder() {
   const [spinSpeed, setSpinSpeed] = useState(1);
   const [activeBtn, setActiveBtn] = useState('play');
 
-  // Audio Context for mechanical clicking sound effects
-  const audioCtxRef = useRef(null);
-
   // Responsive scaling observer to guarantee 100% pixel fidelity on all screens
   useEffect(() => {
     const el = containerRef.current;
@@ -65,58 +62,8 @@ function CassetteRecorder() {
     };
   }, []);
 
-  const initAudio = () => {
-    if (!audioCtxRef.current) {
-      const AudioCtx = window.AudioContext || window.webkitAudioContext;
-      if (AudioCtx) audioCtxRef.current = new AudioCtx();
-    }
-  };
-
-  const playClickSound = (type = 'click') => {
-    try {
-      initAudio();
-      if (!audioCtxRef.current) return;
-      const ctx = audioCtxRef.current;
-      if (ctx.state === 'suspended') ctx.resume();
-
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-
-      const now = ctx.currentTime;
-      if (type === 'heavy') {
-        // Heavy metallic mechanical latch clunk (Record / Play)
-        osc.type = 'triangle';
-        osc.frequency.setValueAtTime(140, now);
-        osc.frequency.exponentialRampToValueAtTime(35, now + 0.08);
-        gain.gain.setValueAtTime(0.5, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
-        osc.start(now);
-        osc.stop(now + 0.08);
-      } else if (type === 'release') {
-        // Mechanical release snap (Stop)
-        osc.type = 'square';
-        osc.frequency.setValueAtTime(260, now);
-        osc.frequency.exponentialRampToValueAtTime(60, now + 0.05);
-        gain.gain.setValueAtTime(0.35, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
-        osc.start(now);
-        osc.stop(now + 0.05);
-      } else {
-        // Standard mechanical button snap (Rewind / FF / Pause)
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(320, now);
-        osc.frequency.exponentialRampToValueAtTime(80, now + 0.04);
-        gain.gain.setValueAtTime(0.3, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
-        osc.start(now);
-        osc.stop(now + 0.04);
-      }
-    } catch {
-      // Audio not permitted or supported
-    }
-  };
+  // Silent action handler - audio effects removed
+  const playClickSound = () => {};
 
   // Button Action Handlers
   const handleRecord = () => {

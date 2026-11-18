@@ -1,15 +1,122 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
+import { FaArrowUp, FaArrowLeft } from 'react-icons/fa6';
 import { Header } from './Page/Header/Header';
 import { HomeSection } from './Page/HomeSection/HomeSection';
-import { AboutUsPage } from './Page/AboutUs/AboutUsPage';
-import { OurServicePage } from './Page/OurService/OurServicePage';
-import { NewsPage } from './Page/News/NewsPage';
-import { ContactUsPage } from './Page/ContactUs/ContactUsPage';
-import { FollowUsPage } from './Page/FollowUs/FollowUsPage';
-import { CareerPage } from './Page/Career/CareerPage';
-import { GrievancePage } from './Page/Grievance/GrievancePage';
-import { PlaceholderPage } from './Page/PlaceholderPage/PlaceholderPage';
 import { Footer } from './Page/Footer/Footer';
+
+// Code-split subpages: Downloaded on-demand ONLY when user visits that tab
+const AboutUsPage = lazy(() => import('./Page/AboutUs/AboutUsPage').then(m => ({ default: m.AboutUsPage || m.default })));
+const OurServicePage = lazy(() => import('./Page/OurService/OurServicePage').then(m => ({ default: m.OurServicePage || m.default })));
+const NewsPage = lazy(() => import('./Page/News/NewsPage').then(m => ({ default: m.NewsPage || m.default })));
+const ContactUsPage = lazy(() => import('./Page/ContactUs/ContactUsPage').then(m => ({ default: m.ContactUsPage || m.default })));
+const FollowUsPage = lazy(() => import('./Page/FollowUs/FollowUsPage').then(m => ({ default: m.FollowUsPage || m.default })));
+const CareerPage = lazy(() => import('./Page/Career/CareerPage').then(m => ({ default: m.CareerPage || m.default })));
+const GrievancePage = lazy(() => import('./Page/Grievance/GrievancePage').then(m => ({ default: m.GrievancePage || m.default })));
+const AdvertiseWithUsPage = lazy(() => import('./Page/AdvertiseWithUs/AdvertiseWithUsPage').then(m => ({ default: m.AdvertiseWithUsPage || m.AdvertiseWithUs || m.default })));
+const GalleryPage = lazy(() => import('./Page/Gallery/GalleryPage').then(m => ({ default: m.GalleryPage || m.Gallery || m.default })));
+const PlaceholderPage = lazy(() => import('./Page/PlaceholderPage/PlaceholderPage').then(m => ({ default: m.PlaceholderPage || m.default })));
+
+// Broadcast-style lightweight fallback during on-demand route download
+const PageLoadingFallback = () => (
+  <div className="w-full min-h-[60vh] flex flex-col items-center justify-center p-8 bg-slate-50">
+    <div className="inline-flex items-center gap-2 bg-[#d91b24] text-white px-3 py-1 rounded-full text-[10px] font-black tracking-wider uppercase shadow-xs animate-pulse mb-3">
+      <span className="w-2 h-2 rounded-full bg-white" />
+      <span>LOADING TRANSMISSION</span>
+    </div>
+    <div className="w-8 h-8 border-3 border-red-600 border-t-transparent rounded-full animate-spin" />
+  </div>
+);
+
+// Floating Back to Top Button with Circular Progress Indicator
+const BackToTopButton = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      
+      setScrollProgress(progress);
+      setIsVisible(scrollTop > 350);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
+  return (
+    <button
+      onClick={scrollToTop}
+      aria-label="Back to top"
+      title="Back to Top"
+      className={`fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-50 group flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-full transition-all duration-300 cursor-pointer select-none ${
+        isVisible
+          ? 'opacity-100 translate-y-0 scale-100 pointer-events-auto'
+          : 'opacity-0 translate-y-6 scale-75 pointer-events-none'
+      }`}
+    >
+      {/* Dynamic Circular Scroll Progress SVG Ring */}
+      <svg className="absolute inset-0 w-full h-full -rotate-90 pointer-events-none" viewBox="0 0 48 48">
+        <circle
+          cx="24"
+          cy="24"
+          r="21"
+          fill="none"
+          stroke="rgba(0, 0, 0, 0.12)"
+          strokeWidth="2.5"
+        />
+        <circle
+          cx="24"
+          cy="24"
+          r="21"
+          fill="none"
+          stroke="#e01923"
+          strokeWidth="2.5"
+          strokeDasharray="132"
+          strokeDashoffset={132 - (132 * scrollProgress) / 100}
+          strokeLinecap="round"
+          className="transition-[stroke-dashoffset] duration-100"
+        />
+      </svg>
+
+      {/* Button Interior Glow & Solid Broadcast Red Center */}
+      <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-tr from-[#990d14] via-[#d91b24] to-[#ef4444] text-white flex items-center justify-center shadow-[0_4px_16px_rgba(217,27,36,0.55)] group-hover:shadow-[0_6px_22px_rgba(217,27,36,0.85)] group-hover:scale-105 active:scale-95 transition-all duration-200 border border-white/50">
+        <FaArrowUp className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-white transition-transform duration-200 group-hover:-translate-y-0.5" />
+      </div>
+
+      {/* Hover Pulse Ripple Ring */}
+      <span className="absolute -inset-1 rounded-full bg-red-600/30 opacity-0 group-hover:opacity-100 group-hover:animate-ping pointer-events-none transition-opacity duration-300" />
+    </button>
+  );
+};
+
+// Top Global Floating Back Pill (Displayed only on subpages, zero layout shift)
+const TopBackNavigation = ({ onGoBack }) => {
+  return (
+    <button
+      onClick={onGoBack}
+      type="button"
+      aria-label="Go back to previous page"
+      title="Go back to previous page"
+      className="absolute top-3 sm:top-4 left-3 sm:left-6 md:left-8 z-30 inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white/95 backdrop-blur-xs border border-slate-200/90 text-slate-700 hover:text-red-600 hover:border-red-400 shadow-[0_2px_8px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_14px_rgba(217,27,36,0.18)] hover:-translate-y-0.5 active:scale-95 transition-all duration-200 font-bold text-xs sm:text-sm cursor-pointer group select-none"
+    >
+      <div className="w-4.5 h-4.5 sm:w-5.5 sm:h-5.5 rounded-full bg-red-50 text-red-600 group-hover:bg-red-600 group-hover:text-white flex items-center justify-center transition-colors duration-200 flex-shrink-0">
+        <FaArrowLeft className="w-2.5 h-2.5 sm:w-3 sm:h-3 transition-transform duration-200 group-hover:-translate-x-0.5" />
+      </div>
+      <span>Back</span>
+    </button>
+  );
+};
 
 // Mapping table between hash routes and active navigation labels
 const routeToNavMap = {
@@ -135,6 +242,24 @@ function App() {
     }
   };
 
+  // Global back button navigation handler
+  const handleGoBack = () => {
+    if (typeof window !== 'undefined') {
+      const currentHash = window.location.hash;
+      if (window.history.length > 1) {
+        window.history.back();
+        // If history.back did not change hash (e.g. fresh tab direct entry), fallback to home
+        setTimeout(() => {
+          if (window.location.hash === currentHash) {
+            handleTabChange('Home', '#home');
+          }
+        }, 150);
+      } else {
+        handleTabChange('Home', '#home');
+      }
+    }
+  };
+
   // Determine whether to display the 24-section homepage or a dedicated page
   const isHomepageView =
     currentRoute === 'home' ||
@@ -150,29 +275,46 @@ function App() {
       {/* Conditional View: Homepage / About Us / Our Services / Grievance / News / Contact Us / Follow Us / Dedicated Placeholder Page */}
       {isHomepageView ? (
         <HomeSection />
-      ) : currentRoute === 'about-us' || currentRoute === 'aboutus' ? (
-        <AboutUsPage />
-      ) : currentRoute === 'our-services' || currentRoute === 'our-service' || currentRoute === 'ourservice' || currentRoute === 'ourservices' ? (
-        <OurServicePage />
-      ) : currentRoute === 'grievance' ? (
-        <GrievancePage />
-      ) : currentRoute === 'news' ? (
-        <NewsPage />
-      ) : currentRoute === 'contact-us' || currentRoute === 'contactus' ? (
-        <ContactUsPage />
-      ) : currentRoute === 'follow-us' || currentRoute === 'followus' ? (
-        <FollowUsPage />
-      ) : currentRoute === 'career' || currentRoute === 'carrier' ? (
-        <CareerPage />
       ) : (
-        /* Dedicated Placeholder Page for routes (Live TV, Advertise, etc.) */
-        <PlaceholderPage route={currentRoute} onNavigate={(tab) => handleTabChange(tab)} />
+        <div className="relative w-full flex-1">
+          {/* Top Floating Back Pill - absolutely placed directly on top-left of the subpage */}
+          <TopBackNavigation onGoBack={handleGoBack} />
+
+          <Suspense fallback={<PageLoadingFallback />}>
+            {currentRoute === 'about-us' || currentRoute === 'aboutus' ? (
+              <AboutUsPage />
+            ) : currentRoute === 'our-services' || currentRoute === 'our-service' || currentRoute === 'ourservice' || currentRoute === 'ourservices' ? (
+              <OurServicePage />
+            ) : currentRoute === 'grievance' ? (
+              <GrievancePage />
+            ) : currentRoute === 'news' ? (
+              <NewsPage />
+            ) : currentRoute === 'contact-us' || currentRoute === 'contactus' ? (
+              <ContactUsPage />
+            ) : currentRoute === 'follow-us' || currentRoute === 'followus' ? (
+              <FollowUsPage />
+            ) : currentRoute === 'career' || currentRoute === 'carrier' ? (
+              <CareerPage />
+            ) : currentRoute === 'advertise-with-us' || currentRoute === 'advertisewithus' || currentRoute === 'advertise' ? (
+              <AdvertiseWithUsPage />
+            ) : currentRoute === 'gallery' ? (
+              <GalleryPage />
+            ) : (
+              <PlaceholderPage route={currentRoute} onNavigate={(tab) => handleTabChange(tab)} />
+            )}
+          </Suspense>
+        </div>
       )}
 
       {/* ========================================================================= */}
       {/* 7. OFFICIAL BROADCAST NEWS FOOTER & MOVING SATELLITE VAN SCENE            */}
       {/* ========================================================================= */}
       <Footer isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
+
+      {/* ========================================================================= */}
+      {/* 8. FLOATING BROADCAST BACK TO TOP BUTTON                                  */}
+      {/* ========================================================================= */}
+      <BackToTopButton />
 
     </div>
   );

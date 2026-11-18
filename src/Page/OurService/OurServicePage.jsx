@@ -910,7 +910,7 @@ export default function Ourservice({ cards = ALL_36_CARDS }) {
   };
 
   return (
-    <div className="min-h-screen w-full flex flex-col items-center bg-[#f3f4f6] px-1 sm:px-4 md:px-8 py-6 sm:py-12 select-none overflow-x-hidden">
+    <div className="min-h-screen w-full flex flex-col items-center bg-[#f3f4f6] px-1 sm:px-4 md:px-8 pt-12 pb-6 sm:py-12 select-none overflow-x-hidden">
       
       {/* Clean Factory / Studio Neutral Lighting Background */}
       <div 

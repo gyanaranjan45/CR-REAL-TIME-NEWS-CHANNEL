@@ -1,31 +1,103 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import { heroSlides } from './HeroSectionData';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa6';
 
+// Section01 is eagerly loaded for instantaneous above-the-fold render
 import { Section01 } from './Section01/Section01';
-import { Section02 } from './Section02/Section02';
-import { Section03 } from './Section03/Section03';
-import { Section04 } from './Section04/Section04';
-import { Section05 } from './Section05/Section05';
-import { Section06 } from './Section06/Section06';
-import { Section07 } from './Section07/Section07';
-import { Section08 } from './Section08/Section08';
-import { Section09 } from './Section09/Section09';
-import { Section10 } from './Section10/Section10';
-import { Section11 } from './Section11/Section11';
-import { Section12 } from './Section12/Section12';
-import { Section13 } from './Section13/Section13';
-import { Section14 } from './Section14/Section14';
-import { Section15 } from './Section15/Section15';
-import { Section16 } from './Section16/Section16';
-import { Section17 } from './Section17/Section17';
-import { Section18 } from './Section18/Section18';
-import { Section19 } from './Section19/Section19';
-import { Section20 } from './Section20/Section20';
-import { Section21 } from './Section21/Section21';
-import { Section22 } from './Section22/Section22';
-import { Section23 } from './Section23/Section23';
-import { Section24 } from './Section24/Section24';
+
+// Sections 02 through 24 are code-split and loaded on demand as the user scrolls
+const Section02 = lazy(() => import('./Section02/Section02').then(m => ({ default: m.Section02 || m.default })));
+const Section03 = lazy(() => import('./Section03/Section03').then(m => ({ default: m.Section03 || m.default })));
+const Section04 = lazy(() => import('./Section04/Section04').then(m => ({ default: m.Section04 || m.default })));
+const Section05 = lazy(() => import('./Section05/Section05').then(m => ({ default: m.Section05 || m.default })));
+const Section06 = lazy(() => import('./Section06/Section06').then(m => ({ default: m.Section06 || m.default })));
+const Section07 = lazy(() => import('./Section07/Section07').then(m => ({ default: m.Section07 || m.default })));
+const Section08 = lazy(() => import('./Section08/Section08').then(m => ({ default: m.Section08 || m.default })));
+const Section09 = lazy(() => import('./Section09/Section09').then(m => ({ default: m.Section09 || m.default })));
+const Section10 = lazy(() => import('./Section10/Section10').then(m => ({ default: m.Section10 || m.default })));
+const Section11 = lazy(() => import('./Section11/Section11').then(m => ({ default: m.Section11 || m.default })));
+const Section12 = lazy(() => import('./Section12/Section12').then(m => ({ default: m.Section12 || m.default })));
+const Section13 = lazy(() => import('./Section13/Section13').then(m => ({ default: m.Section13 || m.default })));
+const Section14 = lazy(() => import('./Section14/Section14').then(m => ({ default: m.Section14 || m.default })));
+const Section15 = lazy(() => import('./Section15/Section15').then(m => ({ default: m.Section15 || m.default })));
+const Section16 = lazy(() => import('./Section16/Section16').then(m => ({ default: m.Section16 || m.default })));
+const Section17 = lazy(() => import('./Section17/Section17').then(m => ({ default: m.Section17 || m.default })));
+const Section18 = lazy(() => import('./Section18/Section18').then(m => ({ default: m.Section18 || m.default })));
+const Section19 = lazy(() => import('./Section19/Section19').then(m => ({ default: m.Section19 || m.default })));
+const Section20 = lazy(() => import('./Section20/Section20').then(m => ({ default: m.Section20 || m.default })));
+const Section21 = lazy(() => import('./Section21/Section21').then(m => ({ default: m.Section21 || m.default })));
+const Section22 = lazy(() => import('./Section22/Section22').then(m => ({ default: m.Section22 || m.default })));
+const Section23 = lazy(() => import('./Section23/Section23').then(m => ({ default: m.Section23 || m.default })));
+const Section24 = lazy(() => import('./Section24/Section24').then(m => ({ default: m.Section24 || m.default })));
+
+/**
+ * LazySectionWrapper
+ * Viewport-deferred mounting using IntersectionObserver + hash anchor support.
+ * Only mounts heavy section components when within 600px of the viewport,
+ * eliminating initial DOM bloat, CPU spikes, and refresh lag.
+ */
+const LazySectionWrapper = ({ id, children, minHeight = 'min-h-[400px]' }) => {
+  const [inView, setInView] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const hash = window.location.hash.replace('#', '').trim().toLowerCase();
+      if (id && (hash === id.toLowerCase() || window.location.href.toLowerCase().includes(id.toLowerCase()))) {
+        return true;
+      }
+    }
+    return false;
+  });
+  const ref = useRef(null);
+
+  useEffect(() => {
+    if (inView) return;
+    if (typeof window === 'undefined' || !('IntersectionObserver' in window)) {
+      setInView(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          observer.disconnect();
+        }
+      },
+      {
+        rootMargin: '600px 0px',
+      }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [inView, id]);
+
+  useEffect(() => {
+    if (inView || !id) return;
+    const handleHashCheck = () => {
+      const hash = window.location.hash.replace('#', '').trim().toLowerCase();
+      if (hash === id.toLowerCase()) {
+        setInView(true);
+      }
+    };
+    window.addEventListener('hashchange', handleHashCheck);
+    return () => window.removeEventListener('hashchange', handleHashCheck);
+  }, [inView, id]);
+
+  return (
+    <div ref={ref} id={id} className={`w-full ${minHeight} section-viewport-opt`}>
+      {inView ? (
+        <Suspense fallback={<div className={`w-full ${minHeight}`} />}>
+          {children}
+        </Suspense>
+      ) : null}
+    </div>
+  );
+};
 
 // =========================================================================
 // NEWS CAMERA FRAME SUBCOMPONENT
@@ -1205,43 +1277,79 @@ export const HeroSection = () => {
         <HeroBanner />
       </div>
 
-      {/* 24 Sequential Homepage Sections */}
+      {/* 24 Sequential Homepage Sections - Viewport Deferred */}
       <div id="news">
         <Section01 />
       </div>
-      <Section02 />
-      <Section03 />
-      <Section04 />
-      <div id="breaking-news">
+      <LazySectionWrapper minHeight="min-h-[500px]">
+        <Section02 />
+      </LazySectionWrapper>
+      <LazySectionWrapper minHeight="min-h-[500px]">
+        <Section03 />
+      </LazySectionWrapper>
+      <LazySectionWrapper minHeight="min-h-[500px]">
+        <Section04 />
+      </LazySectionWrapper>
+      <LazySectionWrapper id="breaking-news" minHeight="min-h-[500px]">
         <Section05 />
-      </div>
-      <Section06 />
-      <Section07 />
-      <Section08 />
-      <div id="article">
+      </LazySectionWrapper>
+      <LazySectionWrapper minHeight="min-h-[500px]">
+        <Section06 />
+      </LazySectionWrapper>
+      <LazySectionWrapper minHeight="min-h-[500px]">
+        <Section07 />
+      </LazySectionWrapper>
+      <LazySectionWrapper minHeight="min-h-[500px]">
+        <Section08 />
+      </LazySectionWrapper>
+      <LazySectionWrapper id="article" minHeight="min-h-[500px]">
         <Section09 />
-      </div>
-      <Section10 />
-      <div id="e-newspaper">
+      </LazySectionWrapper>
+      <LazySectionWrapper minHeight="min-h-[500px]">
+        <Section10 />
+      </LazySectionWrapper>
+      <LazySectionWrapper id="e-newspaper" minHeight="min-h-[500px]">
         <Section11 />
-      </div>
-      <Section12 />
-      <Section13 />
-      <div id="headline-news">
+      </LazySectionWrapper>
+      <LazySectionWrapper minHeight="min-h-[500px]">
+        <Section12 />
+      </LazySectionWrapper>
+      <LazySectionWrapper minHeight="min-h-[500px]">
+        <Section13 />
+      </LazySectionWrapper>
+      <LazySectionWrapper id="headline-news" minHeight="min-h-[500px]">
         <Section14 />
-      </div>
-      <Section15 />
-      <Section16 />
-      <Section17 />
-      <Section18 />
-      <Section19 />
-      <Section20 />
-      <Section21 />
-      <Section22 />
-      <Section23 />
-      <div id="latest-news">
+      </LazySectionWrapper>
+      <LazySectionWrapper minHeight="min-h-[500px]">
+        <Section15 />
+      </LazySectionWrapper>
+      <LazySectionWrapper minHeight="min-h-[500px]">
+        <Section16 />
+      </LazySectionWrapper>
+      <LazySectionWrapper minHeight="min-h-[500px]">
+        <Section17 />
+      </LazySectionWrapper>
+      <LazySectionWrapper minHeight="min-h-[500px]">
+        <Section18 />
+      </LazySectionWrapper>
+      <LazySectionWrapper minHeight="min-h-[500px]">
+        <Section19 />
+      </LazySectionWrapper>
+      <LazySectionWrapper minHeight="min-h-[500px]">
+        <Section20 />
+      </LazySectionWrapper>
+      <LazySectionWrapper minHeight="min-h-[500px]">
+        <Section21 />
+      </LazySectionWrapper>
+      <LazySectionWrapper minHeight="min-h-[500px]">
+        <Section22 />
+      </LazySectionWrapper>
+      <LazySectionWrapper minHeight="min-h-[500px]">
+        <Section23 />
+      </LazySectionWrapper>
+      <LazySectionWrapper id="latest-news" minHeight="min-h-[500px]">
         <Section24 />
-      </div>
+      </LazySectionWrapper>
     </>
   );
 };

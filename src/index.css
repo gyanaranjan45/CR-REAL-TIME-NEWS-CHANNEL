@@ -2151,6 +2151,15 @@
   animation: ovalPlatformPulse 2.8s ease-out infinite;
 }
 
+/* ========================================================================== */
+/* SECTION VIEWPORT OPTIMIZATIONS (Zero-Lag Smooth Scrolling & Instant Mount) */
+/* ========================================================================== */
+.section-viewport-opt {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 700px;
+}
+
+
 
 
 

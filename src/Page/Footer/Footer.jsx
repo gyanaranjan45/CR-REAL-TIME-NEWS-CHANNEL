@@ -359,13 +359,13 @@ export const Footer = () => {
         <div className="max-w-[1640px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
           
           {/* Main 5-Column Grid Layout matching reference image 1:1 */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-6 xl:gap-8 items-start">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-6 xl:gap-8 items-start">
             
             {/* ----------------------------------------------------- */}
             {/* COLUMN 1: CR NEWS LOGO, TAGLINE, DESCRIPTION, SOCIALS */}
             {/* (Takes 3.5 cols on desktop)                           */}
             {/* ----------------------------------------------------- */}
-            <div className="lg:col-span-4 xl:col-span-3 flex flex-col space-y-4">
+            <div className="lg:col-span-4 xl:col-span-3 flex flex-col space-y-3 sm:space-y-4">
               
               {/* Brand Logo & Slogan Header */}
               <div className="flex items-center gap-3.5">
@@ -401,7 +401,7 @@ export const Footer = () => {
                 Bringing you the latest updates, in-depth analysis and stories from India and around the world. Stay informed. Stay ahead.
               </p>
 
-              {/* 5 Social Media Circular Icon Pills using React Icons */}
+              {/* 5 Social Media Circular Icon Pills - Fully Visible on Mobile & Desktop */}
               <div className="flex items-center gap-2.5 pt-2">
                 
                 {/* Facebook */}
@@ -460,58 +460,66 @@ export const Footer = () => {
             </div>
 
             {/* ----------------------------------------------------- */}
-            {/* COLUMN 2: QUICK LINKS                                 */}
+            {/* MOBILE TWO-COLUMN WRAPPER: QUICK LINKS & SERVICES     */}
+            {/* Side-by-side on mobile, unwrapped on desktop via md/lg:contents */}
             {/* ----------------------------------------------------- */}
-            <div className="lg:col-span-2 xl:col-span-2 flex flex-col">
-              <div className="mb-3">
-                <h4 className="text-[#07193d] font-bold text-[14px] sm:text-[15px] tracking-wide font-['Montserrat',sans-serif]">
-                  Quick Links
-                </h4>
-                <div className="w-8 h-[2px] bg-[#e01923] mt-1 rounded-full" />
+            <div className="grid grid-cols-2 gap-4 sm:gap-6 md:contents lg:contents">
+              
+              {/* COLUMN 2: QUICK LINKS (Left Column on Mobile) */}
+              <div className="lg:col-span-2 xl:col-span-2 flex flex-col">
+                <div className="mb-2.5 sm:mb-3">
+                  <h4 className="text-[#07193d] font-bold text-[13.5px] sm:text-[15px] tracking-wide font-['Montserrat',sans-serif]">
+                    Quick Links
+                  </h4>
+                  <div className="w-8 h-[2px] bg-[#e01923] mt-1 rounded-full" />
+                </div>
+                <ul className="space-y-1.5 sm:space-y-2 text-xs sm:text-[13px] text-slate-600">
+                  {quickLinks.map((item) => {
+                    const name = typeof item === 'string' ? item : item.name;
+                    const href = typeof item === 'string' ? `#${item.toLowerCase().replace(/\s+/g, '-')}` : item.href;
+                    return (
+                      <li key={name}>
+                        <a href={href} className="hover:text-[#e01923] transition-colors">
+                          {name}
+                        </a>
+                      </li>
+                    );
+                  })}
+                </ul>
               </div>
-              <ul className="space-y-2 text-xs sm:text-[13px] text-slate-600">
-                {quickLinks.map((item) => (
-                  <li key={item}>
-                    <a href={`#${item.toLowerCase().replace(/\s+/g, '-')}`} className="hover:text-[#e01923] transition-colors">
-                      {item}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+
+              {/* COLUMN 3: OUR SERVICES (Right Column on Mobile) */}
+              <div className="lg:col-span-2 xl:col-span-2 flex flex-col">
+                <div className="mb-2.5 sm:mb-3">
+                  <h4 className="text-[#07193d] font-bold text-[13.5px] sm:text-[15px] tracking-wide font-['Montserrat',sans-serif]">
+                    Our Services
+                  </h4>
+                  <div className="w-8 h-[2px] bg-[#e01923] mt-1 rounded-full" />
+                </div>
+                <ul className="space-y-1.5 sm:space-y-2 text-xs sm:text-[13px] text-slate-600">
+                  {ourServices.map((item) => (
+                    <li key={item}>
+                      <a href={`#${item.toLowerCase().replace(/\s+/g, '-')}`} className="hover:text-[#e01923] transition-colors">
+                        {item}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
             </div>
 
             {/* ----------------------------------------------------- */}
-            {/* COLUMN 3: OUR SERVICES                                */}
+            {/* COLUMN 4: SUPPORT (Hidden on Mobile, Visible on Desktop) */}
             {/* ----------------------------------------------------- */}
-            <div className="lg:col-span-2 xl:col-span-2 flex flex-col">
-              <div className="mb-3">
-                <h4 className="text-[#07193d] font-bold text-[14px] sm:text-[15px] tracking-wide font-['Montserrat',sans-serif]">
-                  Our Services
-                </h4>
-                <div className="w-8 h-[2px] bg-[#e01923] mt-1 rounded-full" />
-              </div>
-              <ul className="space-y-2 text-xs sm:text-[13px] text-slate-600">
-                {ourServices.map((item) => (
-                  <li key={item}>
-                    <a href={`#${item.toLowerCase().replace(/\s+/g, '-')}`} className="hover:text-[#e01923] transition-colors">
-                      {item}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* ----------------------------------------------------- */}
-            {/* COLUMN 4: SUPPORT                                     */}
-            {/* ----------------------------------------------------- */}
-            <div className="lg:col-span-2 xl:col-span-2 flex flex-col">
-              <div className="mb-3">
-                <h4 className="text-[#07193d] font-bold text-[14px] sm:text-[15px] tracking-wide font-['Montserrat',sans-serif]">
+            <div className="hidden md:flex lg:col-span-2 xl:col-span-2 flex-col">
+              <div className="mb-2.5 sm:mb-3">
+                <h4 className="text-[#07193d] font-bold text-[13.5px] sm:text-[15px] tracking-wide font-['Montserrat',sans-serif]">
                   Support
                 </h4>
                 <div className="w-8 h-[2px] bg-[#e01923] mt-1 rounded-full" />
               </div>
-              <ul className="space-y-2 text-xs sm:text-[13px] text-slate-600">
+              <ul className="space-y-1.5 sm:space-y-2 text-xs sm:text-[13px] text-slate-600">
                 {supportLinks.map((item) => (
                   <li key={item}>
                     <a href={`#${item.toLowerCase().replace(/\s+/g, '-')}`} className="hover:text-[#e01923] transition-colors">

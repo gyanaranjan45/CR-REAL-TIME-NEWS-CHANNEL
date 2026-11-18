@@ -3072,7 +3072,7 @@ export const Grievance = () => {
       {/* ======================================================== */}
       {/* 1. TOP HEADER SECTION: GRIEVANCE HEADING & DESCRIPTION   */}
       {/* ======================================================== */}
-      <header className="w-full max-w-5xl mx-auto px-4 pt-5 sm:pt-12 pb-3 sm:pb-6 text-center">
+      <header className="w-full max-w-5xl mx-auto px-4 pt-12 sm:pt-12 pb-3 sm:pb-6 text-center">
         {/* Official Authority Badge (Staggered Entrance 1) */}
         <div className="entrance-badge inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-[11px] sm:text-xs font-bold uppercase tracking-wider mb-2 sm:mb-3 shadow-xs">
           <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse" />
