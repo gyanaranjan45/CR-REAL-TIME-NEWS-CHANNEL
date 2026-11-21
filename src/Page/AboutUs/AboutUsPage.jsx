@@ -53,7 +53,10 @@ import {
   Satellite,
   Leaf,
   Podcast,
-  Share2
+  Share2,
+  Fingerprint,
+  MessageSquare,
+  FileX
 } from 'lucide-react';
 import { aboutUsDirectoryCards, cpuTVBranding } from './AboutUsPageData';
 
@@ -123,6 +126,28 @@ const CardIcon = ({ type }) => {
       return <Handshake className="w-5.5 h-5.5 text-white" strokeWidth={2.4} />;
     case 'social-responsibility':
       return <Heart className="w-5.5 h-5.5 text-white" strokeWidth={2.4} />;
+    case 'conflict-of-interest':
+      return <Scale className="w-5.5 h-5.5 text-white" strokeWidth={2.4} />;
+    case 'right-to-reply':
+      return <MessageSquareQuote className="w-5.5 h-5.5 text-white" strokeWidth={2.4} />;
+    case 'news-publication-policy':
+      return <Newspaper className="w-5.5 h-5.5 text-white" strokeWidth={2.4} />;
+    case 'source-protection':
+      return <KeyIcon className="w-5.5 h-5.5 text-white" strokeWidth={2.4} />;
+    case 'child-protection':
+      return <HeartHandshake className="w-5.5 h-5.5 text-white" strokeWidth={2.4} />;
+    case 'news-submission':
+      return <FileCheck className="w-5.5 h-5.5 text-white" strokeWidth={2.4} />;
+    case 'advertisement-policy':
+      return <Megaphone className="w-5.5 h-5.5 text-white" strokeWidth={2.4} />;
+    case 'grievance-policy':
+      return <BellRing className="w-5.5 h-5.5 text-white" strokeWidth={2.4} />;
+    case 'digital-security-policy':
+      return <Fingerprint className="w-5.5 h-5.5 text-white" strokeWidth={2.4} />;
+    case 'user-comment-policy':
+      return <MessageSquare className="w-5.5 h-5.5 text-white" strokeWidth={2.4} />;
+    case 'content-removal-policy':
+      return <FileX className="w-5.5 h-5.5 text-white" strokeWidth={2.4} />;
 
     // 18 Demo Cards
     case 'citizen-journalism':
@@ -350,7 +375,13 @@ const DirectoryScreen = () => {
                   key={card.id}
                   whileHover={{ y: -2, scale: 1.012 }}
                   transition={{ duration: 0.15 }}
-                  onClick={() => setSelectedCard(card)}
+                  onClick={() => {
+                    if (card.iconType === 'copyright' || card.title.toLowerCase() === 'copyright' || String(card.id) === '36') {
+                      window.location.hash = '#copyright';
+                      return;
+                    }
+                    setSelectedCard(card);
+                  }}
                   className="group relative bg-white/95 backdrop-blur-sm rounded-xl border border-blue-100 shadow-[0_2px_10px_rgba(30,64,175,0.06)] hover:shadow-[0_6px_20px_rgba(30,64,175,0.14)] hover:border-blue-300 transition-all duration-200 p-2.5 flex items-center gap-3 text-left cursor-pointer overflow-hidden"
                 >
                   {/* Subtle bottom line hover glow */}
@@ -477,6 +508,18 @@ const DirectoryScreen = () => {
               <p className="text-xs text-slate-600 leading-relaxed font-normal bg-slate-50 p-3 rounded-xl border border-slate-200">
                 {selectedCard.description}
               </p>
+              {(selectedCard.iconType === 'copyright' || selectedCard.title.toLowerCase() === 'copyright' || String(selectedCard.id) === '36') && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    window.location.hash = '#copyright';
+                  }}
+                  className="mt-2.5 w-full py-2 px-3 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-bold text-xs rounded-xl shadow-md flex items-center justify-center gap-1.5 transition-all cursor-pointer"
+                >
+                  <span>Explore Full Copyright Policy Showcase</span>
+                  <span>→</span>
+                </button>
+              )}
             </div>
 
             <div className="mt-auto pt-2 border-t border-slate-200 flex items-center justify-between text-xs font-mono text-slate-500">

@@ -14,6 +14,15 @@ const CareerPage = lazy(() => import('./Page/Career/CareerPage').then(m => ({ de
 const GrievancePage = lazy(() => import('./Page/Grievance/GrievancePage').then(m => ({ default: m.GrievancePage || m.default })));
 const AdvertiseWithUsPage = lazy(() => import('./Page/AdvertiseWithUs/AdvertiseWithUsPage').then(m => ({ default: m.AdvertiseWithUsPage || m.AdvertiseWithUs || m.default })));
 const GalleryPage = lazy(() => import('./Page/Gallery/GalleryPage').then(m => ({ default: m.GalleryPage || m.Gallery || m.default })));
+const MediaCoveragePage = lazy(() => import('./Page/MediaCoverage/MediaCoveragePage').then(m => ({ default: m.MediaCoveragePage || m.MediaCoverage || m.default })));
+const ArticlePage = lazy(() => import('./Page/Article/ArticlePage').then(m => ({ default: m.ArticlePage || m.BlackComputer || m.default })));
+const LiveTVPage = lazy(() => import('./Page/LiveTV/LiveTVPage').then(m => ({ default: m.LiveTVPage || m.LiveTV || m.default })));
+const EBookPage = lazy(() => import('./Page/EBook/EBookPage').then(m => ({ default: m.EBookPage || m.Ebook || m.default })));
+const ENewspaperPage = lazy(() => import('./Page/ENewspaper/ENewspaperPage').then(m => ({ default: m.ENewspaperPage || m.NewsPaper || m.default })));
+const EventAndProgramsPage = lazy(() => import('./Page/EventAndPrograms/EventAndProgramsPage').then(m => ({ default: m.EventAndProgramsPage || m.MusicEventsConcerts || m.default })));
+const BreakingNewsPage = lazy(() => import('./Page/BreakingNews/BreakingNewsPage').then(m => ({ default: m.BreakingNewsPage || m.BreakingNews || m.default })));
+const LatestNewsPage = lazy(() => import('./Page/LatestNews/LatestNewsPage').then(m => ({ default: m.LatestNewsPage || m.Oven || m.default })));
+const CopyrightPage = lazy(() => import('./Page/AboutUs/Copyright/CopyrightPage').then(m => ({ default: m.CopyrightPage || m.CopyRight || m.default })));
 const PlaceholderPage = lazy(() => import('./Page/PlaceholderPage/PlaceholderPage').then(m => ({ default: m.PlaceholderPage || m.default })));
 
 // Broadcast-style lightweight fallback during on-demand route download
@@ -124,38 +133,51 @@ const routeToNavMap = {
   '#home': 'Home',
   'about-us': 'About Us',
   aboutus: 'About Us',
+  copyright: 'About Us',
+  'copy-right': 'About Us',
+  'copy_right': 'About Us',
   'our-services': 'Our Services',
   'our-service': 'Our Services',
   ourservices: 'Our Services',
   ourservice: 'Our Services',
   grievance: 'Grievance',
   'live-tv': 'Live TV',
+  'live_tv': 'Live TV',
+  livetv: 'Live TV',
   'advertise-with-us': 'Advertise With Us',
   'media-coverage': 'Media Coverage',
   'events-programs': 'Events & Programs',
+  eventsprograms: 'Events & Programs',
+  'events_programs': 'Events & Programs',
+  events: 'Events & Programs',
+  programs: 'Events & Programs',
   career: 'Career',
   'contact-us': 'Contact Us',
   'follow-us': 'Follow Us',
   followus: 'Follow Us',
   'breaking-news': 'Breaking News',
+  breakingnews: 'Breaking News',
+  'breaking_news': 'Breaking News',
   'headline-news': 'Headline News',
   'latest-news': 'Latest News',
+  latestnews: 'Latest News',
+  'latest_news': 'Latest News',
   news: 'News',
   'e-newspaper': 'E-Newspaper',
+  enewspaper: 'E-Newspaper',
+  'e_newspaper': 'E-Newspaper',
+  newspaper: 'E-Newspaper',
   article: 'Article',
   articles: 'Article',
   'e-book': 'E-Book',
+  ebook: 'E-Book',
+  'e_book': 'E-Book',
   gallery: 'Gallery',
 };
 
 // In-page sections that exist on the homepage
 const inPageSectionAnchors = [
-  'breaking-news',
   'headline-news',
-  'latest-news',
-  'e-newspaper',
-  'article',
-  'articles',
 ];
 
 function App() {
@@ -299,6 +321,24 @@ function App() {
               <AdvertiseWithUsPage />
             ) : currentRoute === 'gallery' ? (
               <GalleryPage />
+            ) : currentRoute === 'media-coverage' || currentRoute === 'mediacoverage' ? (
+              <MediaCoveragePage />
+            ) : currentRoute === 'events-programs' || currentRoute === 'events_programs' || currentRoute === 'eventsprograms' || currentRoute === 'events' || currentRoute === 'programs' ? (
+              <EventAndProgramsPage />
+            ) : currentRoute === 'article' || currentRoute === 'articles' ? (
+              <ArticlePage />
+            ) : currentRoute === 'live-tv' || currentRoute === 'livetv' || currentRoute === 'live_tv' ? (
+              <LiveTVPage />
+            ) : currentRoute === 'e-book' || currentRoute === 'ebook' || currentRoute === 'e_book' ? (
+              <EBookPage />
+            ) : currentRoute === 'breaking-news' || currentRoute === 'breakingnews' || currentRoute === 'breaking_news' ? (
+              <BreakingNewsPage />
+            ) : currentRoute === 'latest-news' || currentRoute === 'latestnews' || currentRoute === 'latest_news' ? (
+              <LatestNewsPage />
+            ) : currentRoute === 'copyright' || currentRoute === 'copy-right' || currentRoute === 'copy_right' ? (
+              <CopyrightPage />
+            ) : currentRoute === 'e-newspaper' || currentRoute === 'enewspaper' || currentRoute === 'e_newspaper' || currentRoute === 'newspaper' ? (
+              <ENewspaperPage />
             ) : (
               <PlaceholderPage route={currentRoute} onNavigate={(tab) => handleTabChange(tab)} />
             )}

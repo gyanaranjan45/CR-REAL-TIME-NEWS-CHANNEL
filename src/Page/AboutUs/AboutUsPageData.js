@@ -182,6 +182,16 @@ export const aboutUsDirectoryCards = [
   },
   {
     id: "18",
+    title: "Our Social Responsibility",
+    subtitle: "Public Service & Media Literacy",
+    iconType: "social-responsibility",
+    gradient: "from-[#e11d48] to-[#be123c]",
+    badge: "CSR & PUBLIC",
+    description: "Dedicated outreach initiatives including grassroots digital literacy drives, journalistic scholarships for underprivileged youth, and climate awareness campaigns.",
+    email: "csr@crrealtimenews.com"
+  },
+  {
+    id: "19",
     title: "Editorial Policy",
     subtitle: "Standards for Independence",
     iconType: "editorial-policy",
@@ -191,7 +201,7 @@ export const aboutUsDirectoryCards = [
     email: "policy@crrealtimenews.com"
   },
   {
-    id: "19",
+    id: "20",
     title: "Code of Ethics",
     subtitle: "PCI & International Best Practices",
     iconType: "code-of-ethics",
@@ -201,7 +211,7 @@ export const aboutUsDirectoryCards = [
     email: "ethics@crrealtimenews.com"
   },
   {
-    id: "20",
+    id: "21",
     title: "Fact-Checking Policy",
     subtitle: "Debunking Misinformation",
     iconType: "fact-checking",
@@ -211,7 +221,7 @@ export const aboutUsDirectoryCards = [
     email: "factcheck@crrealtimenews.com"
   },
   {
-    id: "21",
+    id: "22",
     title: "Corrections & Clarifications Policy",
     subtitle: "Prompt, Transparent Corrections",
     iconType: "corrections-policy",
@@ -221,7 +231,7 @@ export const aboutUsDirectoryCards = [
     email: "corrections@crrealtimenews.com"
   },
   {
-    id: "22",
+    id: "23",
     title: "Independence & Transparency",
     subtitle: "Conflict of Interest Safeguards",
     iconType: "independence-transparency",
@@ -231,7 +241,81 @@ export const aboutUsDirectoryCards = [
     email: "transparency@crrealtimenews.com"
   },
   {
-    id: "23",
+    id: "24",
+    title: "Conflict of Interest Policy",
+    subtitle: "Integrity & Disclosures",
+    iconType: "conflict-of-interest",
+    gradient: "from-[#d97706] to-[#b45309]",
+    badge: "DISCLOSURE",
+    description: "Mandatory declarations of personal, financial, or familial interests by editors and reporters, barring any news coverage where personal stakes exist.",
+    email: "conflict@crrealtimenews.com"
+  },
+
+  // =========================================================================
+  // PAGE 3: CARDS 25 - 36 (POLICIES, EDITORIAL STANDARDS & LEGAL FRAMEWORK)
+  // =========================================================================
+  {
+    id: "25",
+    title: "Right to Reply Policy",
+    subtitle: "Equitable & Fair Hearing",
+    iconType: "right-to-reply",
+    gradient: "from-[#0062eb] to-[#0047b3]",
+    badge: "FAIRNESS",
+    description: "Affording a prompt, fair, and equitable opportunity of response to individuals or entities subject to criticism or allegations before broadcasting.",
+    email: "righttoreply@crrealtimenews.com"
+  },
+  {
+    id: "26",
+    title: "News Publication Policy",
+    subtitle: "Verification & Gatekeeping",
+    iconType: "news-publication-policy",
+    gradient: "from-[#10b981] to-[#059669]",
+    badge: "EDITORIAL",
+    description: "Multi-tier verification workflow, editorial approval matrices, and strict factual cross-examination required before any story goes live on air or web.",
+    email: "publication@crrealtimenews.com"
+  },
+  {
+    id: "27",
+    title: "Source Protection Policy",
+    subtitle: "Confidentiality & Whistleblowers",
+    iconType: "source-protection",
+    gradient: "from-[#4f46e5] to-[#312e81]",
+    badge: "CONFIDENTIAL",
+    description: "Uncompromising constitutional commitment to safeguarding the anonymity and legal protection of confidential sources and whistleblowers.",
+    email: "sources@crrealtimenews.com"
+  },
+  {
+    id: "28",
+    title: "Child Protection Policy",
+    subtitle: "POCSO & Minor Safeguards",
+    iconType: "child-protection",
+    gradient: "from-[#db2777] to-[#9d174d]",
+    badge: "PROTECTION",
+    description: "Strict editorial safeguards prohibiting identity disclosure, unauthorized imagery, or sensationalism involving minors, adhering to POCSO and JJ Act.",
+    email: "childsafety@crrealtimenews.com"
+  },
+  {
+    id: "29",
+    title: "News Submission Policy",
+    subtitle: "Freelance & Ground Contributor Terms",
+    iconType: "news-submission",
+    gradient: "from-[#0284c7] to-[#0369a1]",
+    badge: "SUBMISSIONS",
+    description: "Guidelines for freelance journalists, citizen reporters, and external contributors for submitting pitches, raw footage, and investigative reports.",
+    email: "submissions@crrealtimenews.com"
+  },
+  {
+    id: "30",
+    title: "Advertisement Policy",
+    subtitle: "Commercial Demarcation",
+    iconType: "advertisement-policy",
+    gradient: "from-[#f97316] to-[#ea580c]",
+    badge: "COMMERCIAL",
+    description: "Clear demarcation between sponsored commercial content and authentic editorial reporting, barring deceptive ads, surrogate marketing, or paid news.",
+    email: "ads@crrealtimenews.com"
+  },
+  {
+    id: "31",
     title: "Legal & Compliance",
     subtitle: "Statutory & Broadcasting Laws",
     iconType: "legal-compliance",
@@ -241,7 +325,7 @@ export const aboutUsDirectoryCards = [
     email: "legal@crrealtimenews.com"
   },
   {
-    id: "24",
+    id: "32",
     title: "Privacy Policy",
     subtitle: "Protecting Viewer & User Data",
     iconType: "privacy-policy",
@@ -250,12 +334,8 @@ export const aboutUsDirectoryCards = [
     description: "Comprehensive privacy standards ensuring user information, newsletter subscriptions, and feedback inquiries are protected with industry-standard encryption.",
     email: "privacy@crrealtimenews.com"
   },
-
-  // =========================================================================
-  // PAGE 3: CARDS 25 - 36 (USER FINAL LIST 25-30 + DEMO CARDS 31-36)
-  // =========================================================================
   {
-    id: "25",
+    id: "33",
     title: "Terms & Conditions",
     subtitle: "Platform & Content Usage Terms",
     iconType: "terms-conditions",
@@ -265,7 +345,7 @@ export const aboutUsDirectoryCards = [
     email: "terms@crrealtimenews.com"
   },
   {
-    id: "26",
+    id: "34",
     title: "Instructions & Guidelines",
     subtitle: "Community & Reader Protocols",
     iconType: "guidelines",
@@ -275,7 +355,7 @@ export const aboutUsDirectoryCards = [
     email: "guidelines@crrealtimenews.com"
   },
   {
-    id: "27",
+    id: "35",
     title: "Legal Disclaimer",
     subtitle: "Information Liability Notice",
     iconType: "legal-disclaimer",
@@ -285,7 +365,7 @@ export const aboutUsDirectoryCards = [
     email: "disclaimer@crrealtimenews.com"
   },
   {
-    id: "28",
+    id: "36",
     title: "Copyright",
     subtitle: "Intellectual Property Rights",
     iconType: "copyright",
@@ -294,8 +374,12 @@ export const aboutUsDirectoryCards = [
     description: "All broadcasts, textual reports, graphics, original audio, and video content are protected under Indian and international copyright laws. Unauthorized reproduction is prohibited.",
     email: "copyright@crrealtimenews.com"
   },
+
+  // =========================================================================
+  // PAGE 4: CARDS 37 - 48 (CARDS 37-41 FINAL USER LIST + 7 DEMO CARDS)
+  // =========================================================================
   {
-    id: "29",
+    id: "37",
     title: "Partnership",
     subtitle: "Media Alliances & Syndication",
     iconType: "partnership",
@@ -305,19 +389,49 @@ export const aboutUsDirectoryCards = [
     email: "partners@crrealtimenews.com"
   },
   {
-    id: "30",
-    title: "Our Social Responsibility",
-    subtitle: "Public Service & Media Literacy",
-    iconType: "social-responsibility",
-    gradient: "from-[#e11d48] to-[#be123c]",
-    badge: "CSR & PUBLIC",
-    description: "Dedicated outreach initiatives including grassroots digital literacy drives, journalistic scholarships for underprivileged youth, and climate awareness campaigns.",
-    email: "csr@crrealtimenews.com"
+    id: "38",
+    title: "Grievance Policy",
+    subtitle: "Ombudsman & Statutory Cell",
+    iconType: "grievance-policy",
+    gradient: "from-[#e11d48] to-[#9f1239]",
+    badge: "OMBUDSMAN",
+    description: "Formal statutory grievance mechanism headed by an independent ombudsman to address viewer broadcast complaints with time-bound official redressal.",
+    email: "grievance@crrealtimenews.com"
+  },
+  {
+    id: "39",
+    title: "Digital Security Policy",
+    subtitle: "Cybersecurity & Data Hardening",
+    iconType: "digital-security-policy",
+    gradient: "from-[#0284c7] to-[#0369a1]",
+    badge: "CYBERSECURITY",
+    description: "Rigorous digital data protection, encryption protocols, server hardening, and vulnerability disclosures safeguarding our broadcasting systems and readers.",
+    email: "security@crrealtimenews.com"
+  },
+  {
+    id: "40",
+    title: "User Comment Policy",
+    subtitle: "Civil Discourse Standards",
+    iconType: "user-comment-policy",
+    gradient: "from-[#8b5cf6] to-[#6d28d9]",
+    badge: "COMMUNITY",
+    description: "Community standards prohibiting hate speech, defamatory remarks, harassment, and spam, promoting civil and evidence-backed public discourse.",
+    email: "comments@crrealtimenews.com"
+  },
+  {
+    id: "41",
+    title: "Content Removal Policy",
+    subtitle: "Takedown & Rectification",
+    iconType: "content-removal-policy",
+    gradient: "from-[#dc2626] to-[#991b1b]",
+    badge: "TAKEDOWN",
+    description: "Structured takedown procedures in response to court orders, lawful copyright notices, or verified privacy infringements under applicable digital laws.",
+    email: "takedown@crrealtimenews.com"
   },
 
-  // --- 18 DEMO CARDS (CARDS 31 TO 48) ---
+  // --- 7 PROFESSIONAL DEMO CARDS (CARDS 42 TO 48 TO COMPLETE 48-CARD GRID) ---
   {
-    id: "31",
+    id: "42",
     title: "Citizen Journalism Network",
     subtitle: "Empowering Local Storytellers",
     iconType: "citizen-journalism",
@@ -327,7 +441,7 @@ export const aboutUsDirectoryCards = [
     email: "citizen@crrealtimenews.com"
   },
   {
-    id: "32",
+    id: "43",
     title: "Investigative Reporting Cell",
     subtitle: "In-Depth Forensic Inquiries",
     iconType: "investigative-cell",
@@ -337,17 +451,7 @@ export const aboutUsDirectoryCards = [
     email: "investigate@crrealtimenews.com"
   },
   {
-    id: "33",
-    title: "Media Kit & Press Assets",
-    subtitle: "Brand Identity & Logos",
-    iconType: "media-kit",
-    gradient: "from-[#8b5cf6] to-[#6d28d9]",
-    badge: "DEMO • ASSETS",
-    description: "Official high-resolution brand vectors, studio color palettes, executive biographies, channel rate cards, and certified reach metrics for partners and journalists.",
-    email: "mediakit@crrealtimenews.com"
-  },
-  {
-    id: "34",
+    id: "44",
     title: "Broadcast Technology & Studio",
     subtitle: "4K HDR Production & IP Uplink",
     iconType: "broadcast-tech",
@@ -357,7 +461,7 @@ export const aboutUsDirectoryCards = [
     email: "broadcast@crrealtimenews.com"
   },
   {
-    id: "35",
+    id: "45",
     title: "Global Bureaus & Desks",
     subtitle: "International Geo-Political Watch",
     iconType: "global-bureaus",
@@ -367,7 +471,7 @@ export const aboutUsDirectoryCards = [
     email: "global@crrealtimenews.com"
   },
   {
-    id: "36",
+    id: "46",
     title: "Archives & Historical Library",
     subtitle: "Digitized Broadcast Heritage",
     iconType: "archives-library",
@@ -376,62 +480,8 @@ export const aboutUsDirectoryCards = [
     description: "A permanent digital repository preserving decades of broadcast footage, historical speeches, election chronicles, and investigative documentary tapes.",
     email: "archives@crrealtimenews.com"
   },
-
-  // =========================================================================
-  // PAGE 4: CARDS 37 - 48 (REMAINING DEMO CARDS COMPLETING 48 CARDS)
-  // =========================================================================
   {
-    id: "37",
-    title: "Whistleblower Protection Portal",
-    subtitle: "Encrypted Leak Submission",
-    iconType: "whistleblower-portal",
-    gradient: "from-[#0284c7] to-[#0369a1]",
-    badge: "DEMO • SECURE LEAK",
-    description: "End-to-end PGP encrypted submission pipeline allowing civil servants, corporate insiders, and citizens to securely share critical public-interest documents.",
-    email: "whistleblower@crrealtimenews.com"
-  },
-  {
-    id: "38",
-    title: "Audience Grievance Redressal",
-    subtitle: "Ombudsman & Statutory Cell",
-    iconType: "audience-grievance",
-    gradient: "from-[#e11d48] to-[#9f1239]",
-    badge: "DEMO • OMBUDSMAN",
-    description: "A formal statutory mechanism headed by an independent grievance officer to address viewer complaints regarding broadcast standards within time-bound deadlines.",
-    email: "grievance@crrealtimenews.com"
-  },
-  {
-    id: "39",
-    title: "Journalism Fellowships & Training",
-    subtitle: "Nurturing Future Reporters",
-    iconType: "journalism-fellowships",
-    gradient: "from-[#10b981] to-[#059669]",
-    badge: "DEMO • ACADEMY",
-    description: "Annual fellowship program providing stipends, hands-on newsroom mentorship, and multimedia tools to promising journalism graduates from across India.",
-    email: "fellowships@crrealtimenews.com"
-  },
-  {
-    id: "40",
-    title: "Digital & Mobile Innovation",
-    subtitle: "Next-Gen Mobile Storytelling",
-    iconType: "digital-innovation",
-    gradient: "from-[#f59e0b] to-[#d97706]",
-    badge: "DEMO • MOBILE",
-    description: "Creating vertical video stories, interactive data visualizations, instant push alert engines, and lightweight mobile web experiences for bandwidth-constrained areas.",
-    email: "digital@crrealtimenews.com"
-  },
-  {
-    id: "41",
-    title: "Live Satellite Uplink Desk",
-    subtitle: "High-Bandwidth Mobile Vans",
-    iconType: "satellite-uplink",
-    gradient: "from-[#6366f1] to-[#4338ca]",
-    badge: "DEMO • SATELLITE",
-    description: "Fleet of mobile satellite transmission vehicles equipped with Ku-band transponders and bonded cellular encoders for unhindered live broadcasts from disaster zones.",
-    email: "uplink@crrealtimenews.com"
-  },
-  {
-    id: "42",
+    id: "47",
     title: "Environmental & ESG Initiatives",
     subtitle: "Green Newsroom Commitment",
     iconType: "environmental-esg",
@@ -439,56 +489,6 @@ export const aboutUsDirectoryCards = [
     badge: "DEMO • GREEN MEDIA",
     description: "Committed to sustainable media practices including solar-powered studio operations, zero-single-use plastics on outdoor shoots, and carbon-neutral server clusters.",
     email: "esg@crrealtimenews.com"
-  },
-  {
-    id: "43",
-    title: "Community Radio & Podcasting",
-    subtitle: "Audio News on the Go",
-    iconType: "community-podcasts",
-    gradient: "from-[#8b5cf6] to-[#6d28d9]",
-    badge: "DEMO • AUDIO DESK",
-    description: "Daily audio news digests, deep-dive investigative podcast episodes, and community radio syndication reaching millions of listeners on morning commutes.",
-    email: "podcasts@crrealtimenews.com"
-  },
-  {
-    id: "44",
-    title: "Syndication & Content Licensing",
-    subtitle: "Global Distribution Feeds",
-    iconType: "syndication-licensing",
-    gradient: "from-[#2563eb] to-[#1e40af]",
-    badge: "DEMO • SYNDICATION",
-    description: "Licensing verified news footage, documentary packages, and written analysis to international media outlets, educational institutions, and research libraries.",
-    email: "syndication@crrealtimenews.com"
-  },
-  {
-    id: "45",
-    title: "Awards & Industry Recognitions",
-    subtitle: "Celebrated Journalistic Honors",
-    iconType: "industry-awards",
-    gradient: "from-[#ea580c] to-[#c2410c]",
-    badge: "DEMO • RECOGNITION",
-    description: "Honored with national journalism awards for fearless field reporting, investigative documentaries, and innovative digital news presentation.",
-    email: "awards@crrealtimenews.com"
-  },
-  {
-    id: "46",
-    title: "Fact-Check Verification Lab",
-    subtitle: "AI-Assisted Source Authentication",
-    iconType: "factcheck-lab",
-    gradient: "from-[#0891b2] to-[#0e7490]",
-    badge: "DEMO • FORENSIC LAB",
-    description: "Advanced image reverse-search, metadata analysis, synthetic media detection, and cryptographic provenance verification to stop synthetic viral hoaxes.",
-    email: "verificationlab@crrealtimenews.com"
-  },
-  {
-    id: "47",
-    title: "Subscriber & Member Services",
-    subtitle: "Ad-Free & Premium News Experience",
-    iconType: "subscriber-services",
-    gradient: "from-[#4f46e5] to-[#312e81]",
-    badge: "DEMO • MEMBERSHIP",
-    description: "Exclusive member newsletters, live question-and-answer sessions with senior editors, behind-the-scenes documentary access, and ad-free digital reading.",
-    email: "members@crrealtimenews.com"
   },
   {
     id: "48",
